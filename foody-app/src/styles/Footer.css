@@ -1,0 +1,46 @@
+.footer {
+  background: linear-gradient(to right, #555555, #777777); /* gris moyen */
+  color: #ffffff; /* texte blanc pour contraste */
+  text-align: center;
+  padding: 10px 10px;
+  font-family: sans-serif;
+}
+
+  
+  .footer-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .footer-chef {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid white;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+  
+  .footer-chef:hover {
+    transform: scale(1.1); /* effet zoom au survol */
+  }
+  
+  .social-icons {
+    margin-top: 15px;
+    display: flex;
+    gap: 20px;
+    font-size: 30px;
+  }
+  
+  .social-icons a {
+    color: white;
+    transition: color 0.3s, transform 0.3s;
+  }
+  
+  .social-icons a:hover {
+    color: #ffeb3b; /* changement de couleur au survol */
+    transform: scale(1.2); /* léger zoom */
+  }
+  

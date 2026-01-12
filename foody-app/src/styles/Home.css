@@ -1,0 +1,79 @@
+/* HERO (bannière du haut) */
+.hero {
+    width: 100%;
+    height: 350px;
+    background-image: url("https://images.unsplash.com/photo-1495521821757-a1efb6729352");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 60px;
+    color: white;
+  }
+  
+  
+  .hero h1 {
+    font-size: 48px;
+    margin: 0;
+  }
+  
+  .hero p {
+    font-size: 18px;
+  }
+  
+  /* RECHERCHE */
+  .search-input {
+    margin: 20px;
+    padding: 10px;
+    width: 300px;
+    font-size: 16px;
+  }
+  
+  /* GRID DES RECETTES */
+  .recettes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  /* CARTE RECETTE */
+  .card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+  
+  .card h3 {
+    margin: 10px;
+  }
+  
+  .card p {
+    margin: 0 10px 10px;
+    color: #555;
+  }
+  
+  .card a {
+    display: block;
+    margin: 10px;
+    text-align: center;
+    padding: 8px;
+    background: #ff7a00;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+  }
+  

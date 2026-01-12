@@ -1,0 +1,97 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #222222, #444444);
+    padding: 20px 50px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    transition: background 0.5s ease;
+  }
+  
+  .navbar:hover {
+    background: linear-gradient(90deg, #333333, #555555);
+  }
+  
+  .navbar .logo a {
+    color: #f08a24;
+    font-weight: bold;
+    font-size: 26px;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: transform 0.3s, color 0.3s;
+  }
+  
+  .navbar .logo a:hover {
+    transform: scale(1.2) rotate(-2deg);
+    color: #ffd166;
+  }
+  
+  /* wrapper pour centrer les liens */
+  .navbar .nav-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* liens principaux */
+  .navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+  }
+  
+  /* liens principaux */
+.navbar .nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 5px;
+    position: relative;
+    transition: all 0.3s;
+  }
+  
+  /* ligne orange déjà visible */
+  .navbar .nav-links li a::after {
+    content: "";
+    position: absolute;
+    width: 100%;       /* avant 0% → maintenant 100% */
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #f08a24; /* orange */
+    transition: width 0.3s;
+  }
+  
+  /* hover pour pulse ou changement couleur */
+  .navbar .nav-links li a:hover::after {
+    width: 100%;
+  }
+  
+  .navbar .nav-links li a:hover {
+    color: #ffd166; /* ou autre couleur d’accent */
+    background-color: rgba(255, 209, 102, 0.1);
+  }
+  .logout-btn {
+    background: transparent;
+    border: 2px solid #f08a24;
+    color: #f08a24;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .logout-btn:hover {
+    background: #f08a24;
+    color: white;
+  }
+    
+  
+  
