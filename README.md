@@ -47,22 +47,28 @@ Comptes de test
 
 Administrateur
 Email : admin@foody.com
-
 Mot de passe : 123
 Accès au Dashboard : http://localhost:5173/admin
 Utilisateur
 Créer un compte via la page d’inscription.
+
 6-Fonctionnalités
+
 --Utilisateur
+
 Consulter les recettes
 Rechercher et filtrer les recettes
 Voir les détails d’une recette
+
 --Administrateur
+
 Ajouter une recette
 Modifier une recette
 Supprimer une recette
 Upload d’images
+
 7-Tester l’application
+
 Ouvrir http://localhost:5173
 Se connecter en tant qu’admin
 Accéder au Dashboard
