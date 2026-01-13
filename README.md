@@ -47,7 +47,7 @@ Comptes de test
 
 Administrateur
 Email : admin@foody.com
-Mot de passe : 123
+Mot de passe : 1234
 Accès au Dashboard : http://localhost:5173/admin
 Utilisateur
 Créer un compte via la page d’inscription.
