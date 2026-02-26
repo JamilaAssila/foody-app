@@ -15,7 +15,9 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="logo">
-        <Link to="/">Foody App</Link>
+        <Link to="/">
+        <img src="/logo.png" alt="Foody App Logo" className="logo-img" />
+        </Link>
       </div>
 
       <div className="nav-wrapper">

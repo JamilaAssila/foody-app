@@ -6,6 +6,7 @@ import "../styles/Home.css";
 function Home() {
   const [recettes, setRecettes] = useState([]);
   const [search, setSearch] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("Plats principaux");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,9 +20,18 @@ function Home() {
     fetchData();
   }, []);
 
-  const filteredRecettes = recettes.filter((r) =>
-    r.nom.toLowerCase().includes(search.toLowerCase())
-  );
+  const recettesByCategory = recettes.reduce((acc, recette) => {
+    if (!acc[recette.category]) acc[recette.category] = [];
+    acc[recette.category].push(recette);
+    return acc;
+  }, {});
+
+  const categories = [
+    { name: "Entrées"},
+    { name: "Plats principaux"},
+    { name: "Desserts"},
+    { name: "Boissons"},
+  ];
 
   return (
     <div>
@@ -30,24 +40,46 @@ function Home() {
         <p>Découvrez des recettes simples et délicieuses</p>
       </div>
 
-      <h1>Liste des Recettes</h1>
-      <input
-        className="search-input"
-        type="text"
-        placeholder="Rechercher une recette..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      <div className="recettes-container">
+        {/* Menu horizontal des catégories */}
+        <div className="categories-bar">
+          {categories.map((cat) => (
+            <div
+              key={cat.name}
+              className={`category-item ${selectedCategory === cat.name ? "active" : ""}`}
+              onClick={() => setSelectedCategory(cat.name)}
+            >
+              {cat.emoji} {cat.name}
+            </div>
+          ))}
+        </div>
 
-      <div className="recettes-grid">
-        {filteredRecettes.map((r) => (
-          <div key={r.id} className="card">
-            <img src={`http://localhost:5000/uploads/${r.image}`} alt={r.nom} />
-            <h3>{r.nom}</h3>
-            <p>{r.description}</p>
-            <Link to={`/recette/${r.id}`}>Voir la recette</Link>
-          </div>
-        ))}
+        {/* Barre de recherche */}
+        <input
+          className="search-input"
+          type="text"
+          placeholder="Rechercher une recette..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+
+        {/* Recettes */}
+        <div className="recettes-grid">
+       {recettesByCategory[selectedCategory]
+    ?.filter((r) => r.nom.toLowerCase().includes(search.toLowerCase()))
+    .map((r) => (
+      <Link 
+        key={r.id} 
+        to={`/recette/${r.id}`} 
+        className="card-link"
+      >
+        <div className="card">
+          <img src={`http://localhost:5000/uploads/${r.image}`} alt={r.nom} />
+          <h3>{r.nom}</h3>
+        </div>
+      </Link>
+    ))}
+</div>
       </div>
     </div>
   );

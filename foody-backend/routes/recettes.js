@@ -23,26 +23,25 @@ router.get("/", (req, res) => {
 
 // GET une recette par ID
 router.get("/:id", (req, res) => {
-    const { id } = req.params;
-    db.query("SELECT * FROM recettes WHERE id = ?", [id], (err, results) => {
-      if (err) return res.status(500).json(err);
-      if (results.length === 0) return res.status(404).json({ message: "Recette introuvable !" });
-  
-      const recette = results[0];
-  
-      res.json(recette);
-    });
-  });
+  const { id } = req.params;
+  db.query("SELECT * FROM recettes WHERE id = ?", [id], (err, results) => {
+    if (err) return res.status(500).json(err);
+    if (results.length === 0) return res.status(404).json({ message: "Recette introuvable !" });
 
-// POST ajouter recette
+    const recette = results[0];
+    res.json(recette);
+  });
+});
+
+// POST ajouter recette avec category
 router.post("/", upload.single("image"), (req, res) => {
-  const { nom, description, ingredients, instructions } = req.body;
+  const { nom, description, ingredients, instructions, category } = req.body;
   const image = req.file ? req.file.filename : null;
 
-  const sql = `INSERT INTO recettes (nom, description, ingredients, instructions, image)
-               VALUES (?, ?, ?, ?, ?)`;
+  const sql = `INSERT INTO recettes (nom, description, ingredients, instructions, image, category)
+               VALUES (?, ?, ?, ?, ?, ?)`;
 
-  db.query(sql, [nom, description, ingredients, instructions, image], (err, result) => {
+  db.query(sql, [nom, description, ingredients, instructions, image, category], (err, result) => {
     if (err) return res.status(500).json(err);
     res.json({ message: "Recette ajoutée !" });
   });
@@ -55,9 +54,10 @@ router.delete("/:id", (req, res) => {
     res.json({ message: "Recette supprimée" });
   });
 });
-// UPDATE recette
+
+// UPDATE recette avec category
 router.put("/:id", upload.single("image"), (req, res) => {
-  const { nom, description, ingredients, instructions } = req.body;
+  const { nom, description, ingredients, instructions, category } = req.body;
   const { id } = req.params;
 
   let sql;
@@ -67,25 +67,18 @@ router.put("/:id", upload.single("image"), (req, res) => {
     // avec nouvelle image
     sql = `
       UPDATE recettes 
-      SET nom=?, description=?, ingredients=?, instructions=?, image=?
+      SET nom=?, description=?, ingredients=?, instructions=?, image=?, category=?
       WHERE id=?
     `;
-    values = [
-      nom,
-      description,
-      ingredients,
-      instructions,
-      req.file.filename,
-      id,
-    ];
+    values = [nom, description, ingredients, instructions, req.file.filename, category, id];
   } else {
     // sans image
     sql = `
       UPDATE recettes 
-      SET nom=?, description=?, ingredients=?, instructions=?
+      SET nom=?, description=?, ingredients=?, instructions=?, category=?
       WHERE id=?
     `;
-    values = [nom, description, ingredients, instructions, id];
+    values = [nom, description, ingredients, instructions, category, id];
   }
 
   db.query(sql, values, (err) => {
@@ -93,4 +86,5 @@ router.put("/:id", upload.single("image"), (req, res) => {
     res.json({ message: "Recette modifiée avec succès" });
   });
 });
+
 module.exports = router;

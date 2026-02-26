@@ -1,72 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+/* ================= PAGE ================= */
+
 .recette-page {
-    position: relative;
-    min-height: 100vh;
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 50px 20px;
-    overflow: hidden;
+  position: relative;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 50px 20px;
+  overflow: hidden;
+}
+
+/* ===== BACKGROUND FLOU ===== */
+.recette-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(8px);
+  transform: scale(1.05);
+  z-index: -1;
+}
+
+/* ================= LAYOUT GLOBAL ================= */
+
+.recette-layout {
+  display: flex;
+  gap: 40px;
+  width: 100%;
+  max-width: 1400px;
+  align-items: flex-start;
+}
+
+/* ================= COLONNE GAUCHE ================= */
+
+.recette-main {
+  flex: 2;
+  min-width: 0;
+}
+
+/* ================= CARTE PRINCIPALE ================= */
+
+.recette-card {
+  background: rgba(255,255,255,0.9);
+  border-radius: 25px;
+  width: 100%;
+  padding: 40px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+  display: flex;
+  gap: 40px;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* ===== IMAGE ===== */
+
+.recette-image {
+  width: 45%;
+  max-height: 800px;
+  object-fit: cover;
+  border-radius: 20px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.recette-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+/* ================= CONTENU DROITE ================= */
+
+.recette-content {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* ===== TITRE ===== */
+
+.recette-title {
+  font-size: 36px;
+  font-weight: 700;
+  background: linear-gradient(45deg, #ff7e5f, #feb47b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'Pacifico', cursive;
+}
+
+/* ================= SECTIONS ================= */
+
+.recette-section {
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.recette-section h2 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #ff7e5f;
+  border-left: 5px solid #feb47b;
+  padding-left: 10px;
+}
+
+/* ================= INGRÉDIENTS ================= */
+
+.ingredients-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.ingredient-badge {
+  background: linear-gradient(45deg, #ff7e5f, #feb47b);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: transform 0.3s ease;
+}
+
+.ingredient-badge:hover {
+  transform: scale(1.1);
+}
+
+/* ================= INSTRUCTIONS ================= */
+
+.instructions ol {
+  padding-left: 20px;
+}
+
+.instructions li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+  font-weight: 500;
+  color: #444;
+}
+
+/* ================= SIDEBAR ================= */
+
+.related-sidebar {
+  flex: 1;
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(10px);
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  height: fit-content;
+  position: sticky;
+  top: 40px;
+}
+
+.related-sidebar h2 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  text-align: center;
+  background: linear-gradient(45deg, #ff7e5f, #feb47b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ================= CARTES VERTICALES ================= */
+
+.related-card-vertical {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 15px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.related-card-vertical:hover {
+  background: rgba(255,255,255,0.9);
+  transform: translateX(5px);
+}
+
+.related-card-vertical img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.related-card-vertical h4 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* ================= ANIMATION ================= */
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 992px) {
+
+  .recette-layout {
+    flex-direction: column;
   }
-  
-  .recette-page::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('/images/baground.jpg'); /* ton image */
-    background-size: cover;    /* couvre tout l'écran */
-    background-position: center;
-    background-repeat: no-repeat; /* pas de répétition */
-    filter: blur(8px);         /* flou du fond */
-    z-index: -1;               /* derrière le contenu */
-    transform: scale(1.05);    /* légèrement zoom pour éviter les bords visibles */
-  }
-  
-  
+
   .recette-card {
-    background-color: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
-    max-width: 800px;
+    flex-direction: column;
+  }
+
+  .recette-image,
+  .recette-content {
     width: 100%;
-    padding: 30px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    animation: fadeIn 0.6s ease-in-out;
   }
-  
-  .recette-card img {
-    width: 100%;
-    max-height: 400px;
-    object-fit: cover;
-    border-radius: 15px;
-    margin-bottom: 20px;
+
+  .related-sidebar {
+    position: relative;
+    top: 0;
   }
-  
-  .recette-card h1 {
-    color: #f08a24;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .recette-card h3 {
-    color: #333;
-    margin-top: 20px;
-  }
-  
-  .recette-card ul {
-    list-style-type: square;
-    padding-left: 20px;
-  }
-  
-  .recette-card p {
-    line-height: 1.6;
-    color: #555;
-  }
-  
-  @keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-  
+}
